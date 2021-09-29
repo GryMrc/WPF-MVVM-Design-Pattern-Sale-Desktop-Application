@@ -1,0 +1,34 @@
+﻿<Window x:Class="OverPay.Windows.Login.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OverPay.Windows.Login"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="799" ResizeMode="NoResize">
+    <Window.Resources>
+        <local:Responsive x:Key="WpConverter"/>
+    </Window.Resources>
+    <Grid Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Image Source="/assets/Images/Login.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="Fill"/>
+        </Border>
+        <Border Grid.Column="1">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="270" Width="265" Style="{DynamicResource LoginScreenCss}">
+                <Label FontSize="21" FontWeight="Bold" Content="PAVOPAY'E HOŞ GELDİNİZ"/>
+                <Label Content="Hesabınıza giriş yapın" FontWeight="Light"/>
+                <Label>Kullanıcı Adı</Label>
+                <TextBox Name="Username"  Width="215" Height="30" Margin="-50,0,0,0" HorizontalContentAlignment="Left" BorderBrush="Gray"/>
+                <Label>Şifre</Label>
+                <PasswordBox Width="215" Height="30" Name="Password" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="15" BorderBrush="Gray"/>
+                <Button  Margin="0,18" Content="Giriş" x:Name="Login_Button" Click="Login_Click" HorizontalAlignment="Left"  />
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

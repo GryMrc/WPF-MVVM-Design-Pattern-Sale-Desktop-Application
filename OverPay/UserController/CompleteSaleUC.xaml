@@ -1,0 +1,232 @@
+﻿<UserControl x:Class="OverPay.UserController.CompleteSaleUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OverPay.UserController"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800">
+    <Grid Background="White" Margin="20,10,0,0" Style="{DynamicResource CompleteCss}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="50">Satış Özeti</Label>
+        </Border>
+        <Border Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="320"/>
+                </Grid.ColumnDefinitions>
+                <Border>
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Margin="0,0,5,20">
+                            <StackPanel>
+                                <Label HorizontalAlignment="Left">Satış Bilgileri:</Label>
+                                <Border BorderThickness="1" BorderBrush="Black">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0">
+                                            <StackPanel>
+                                                <DockPanel>
+                                                    <Label>Satış Durumu:</Label>
+                                                    <Label>Tamamlandı</Label>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <Label>Satış Numarası:</Label>
+                                                    <Label Content="{Binding Path=Id}"></Label>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="1">
+                                            <StackPanel>
+                                                <DockPanel>
+                                                    <Label>Satış Tarihi:</Label>
+                                                    <Label Content="{Binding Path=CreateDate}"></Label>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="1" Margin="0,0,5,20" x:Name="CustomerInfo">
+                            <StackPanel>
+                                <Label HorizontalAlignment="Left">Müşteri Bilgileri:</Label>
+                                <Border BorderThickness="1" BorderBrush="Black">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="35*"/>
+                                            <ColumnDefinition Width="202*"/>
+                                            <ColumnDefinition Width="237*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Grid.ColumnSpan="2">
+                                            <StackPanel>
+                                                <DockPanel>
+                                                    <Label>Müşteri Tipi:</Label>
+                                                    <Label Content="{Binding Path=Customer.CustomerType.Name}"></Label>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <Label>Müşteri Adı:</Label>
+                                                    <Label Content="{Binding Path=Customer.CustomerName}"></Label>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <Label>Telefon No:</Label>
+                                                    <Label Content="{Binding Path=Customer.InvoicePhone}"></Label>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <Label>Adres:</Label>
+                                                    <Label Content="{Binding Path=Customer.EInvoiceAddress}"></Label>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="1" Grid.ColumnSpan="2" Margin="201,0,0,0">
+                                            <StackPanel>
+                                                <DockPanel>
+                                                    <Label>Fatura Unvanı:</Label>
+                                                    <Label Content="{Binding Path=Customer.InvoiceTitle}"></Label>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <Label>TCKN/VKN:</Label>
+                                                    <Label Content="{Binding Path=Customer.TaxNumber}"></Label>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <Label>E-Posta:</Label>
+                                                    <Label Content="{Binding Path=Customer.InvoiceEMail}"></Label>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="2" Margin="0,0,5,20">
+                            <StackPanel>
+                                <Label HorizontalAlignment="Left">E-Belge Bilgileri:</Label>
+                                <Border BorderThickness="1" BorderBrush="Black">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0">
+                                            <StackPanel>
+                                                <DockPanel>
+                                                    <Label>Belge Tipi:</Label>
+                                                    <Label Content="{Binding Path=FinancialDocuments[0].Type.Name}"></Label>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="1">
+                                            <StackPanel>
+                                                <DockPanel>
+                                                    <Label>Fatura No:</Label>
+                                                    <Label Content="{Binding Path=FinancialDocuments[0].InvoiceNo}"></Label>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="3">
+                            <StackPanel>
+                                <Label HorizontalAlignment="Left">Ödeme Bilgileri:</Label>
+                                <Border BorderThickness="1" BorderBrush="Black">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0">
+                                            <StackPanel>
+                                                <DockPanel>
+                                                    <Label>Ödeme Tipi:</Label>
+                                                    <Label Content="{Binding Path=AddedPayments[0].PaymentType.Name}"></Label>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <Label>Satış Tutarı:</Label>
+                                                    <Label Content="{Binding Path=AddedPayments[0].PaymentAmount}"></Label>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <Label>Kart No:</Label>
+                                                    <Label>-</Label>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="1">
+                                            <StackPanel>
+                                                <DockPanel>
+                                                    <Label>Ödeme Durumu:</Label>
+                                                    <Label>Tamamlandı</Label>
+                                                </DockPanel>
+                                                <DockPanel>
+                                                    <Label>Provizyon No:</Label>
+                                                    <Label>-</Label>
+                                                </DockPanel>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+                <Border Grid.Column="1">
+                    <StackPanel>
+                        <Label HorizontalAlignment="Left">Ödeme Bilgileri: Ürün</Label>
+                        <Border Grid.Column="1">
+                            <StackPanel>
+                                <Border BorderThickness="1" BorderBrush="Black">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0">
+                                            <Label>Ürün Adı</Label>
+                                        </Border>
+                                        <Border Grid.Column="1">
+                                            <Label>Toplam Fiyat</Label>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <ListBox x:Name="ProductList"  ItemsSource="{Binding AddedSaleItems}" >
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel Margin="0,0,0,20">
+                                                <Label Content="{Binding Path=Name}" Width="150"  HorizontalAlignment="Left" HorizontalContentAlignment="Left" />
+                                                <TextBlock Margin="0"  Width="150"  HorizontalAlignment="Left">
+                                                    <Run Text="{Binding Path=ItemQuantity,StringFormat={}{0:n0}}"/>
+                                                    <Run Text="{Binding Path=UnitName,StringFormat={} * {0}}"/>
+                                                    <Run Text="{Binding Path=UnitPriceAmount,StringFormat={}{0:n0} TL}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <Label Content="{Binding Path=TotalPriceAmount}" ContentStringFormat=" {0:n0} TL" Width="150" Foreground="Tomato" HorizontalAlignment="Left" HorizontalContentAlignment="Left"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,80 @@
+﻿<Window x:Class="OverPay.Windows.Customer.CustomerEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OverPay.Windows.Customer"
+        mc:Ignorable="d"
+        Title="AddCustomer" ResizeMode="NoResize" Height="530" Width="800">
+    <Grid x:Name="_grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="266*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="137*"/>
+        </Grid.RowDefinitions>
+        <Canvas x:Name="editItem" Grid.RowSpan="3" DataContext="{Binding Path=SelectedCustomer}">
+            <Label Foreground="White" FontSize="22" Content="{Binding DataContext.EditTitle, ElementName=_grid}" Height="45" Width="800" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Panel.ZIndex="3"/>
+            <Rectangle Height="45" Width="800"/>
+            <Border Height="470" Width="800"  Margin="0,45,0,0" Background="#F3F0ED"/>
+
+            <DockPanel Margin="0,100,0,0">
+                <Label Content="Ad"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <TextBox x:Name="CustomerName" Text="{Binding Path=FirstName, ValidatesOnDataErrors=True , UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></TextBox>
+                <Label  Content="Soyad"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <TextBox Text="{Binding Path=FamilyName, Mode=TwoWay}"  IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></TextBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,160,0,0">
+                <Label Content="Fatura Unvanı"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <TextBox Text="{Binding Path=InvoiceTitle, Mode=TwoWay}"  IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></TextBox>
+                <Label Content="Telefon"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <TextBox Text="{Binding Path=InvoicePhone, Mode=TwoWay}"  IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></TextBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,220,0,0">
+                <Label Content="Müşteri Tipi"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <ComboBox x:Name="CustomerTypeList" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding Path=CustomerTypeId ,Mode=TwoWay}" IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></ComboBox>
+                <Label  Content="E-posta"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <TextBox Text="{Binding Path=InvoiceEMail, Mode=TwoWay}"  IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></TextBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,280,0,0">
+                <Label Content="Vergi Dairesi" ></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <ComboBox x:Name="TaxOfficeList" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding Path=TaxOfficeId ,Mode=TwoWay}" IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></ComboBox>
+                <Label  Content="Ülke:"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <ComboBox x:Name="CountryList" DisplayMemberPath="Name"
+                    SelectedValuePath="Id" SelectionChanged="CountryList_SelectionChanged"></ComboBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,340,0,0">
+                <Label  Content="TCKN/VKN"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <TextBox Text="{Binding Path=TaxNumber, Mode=TwoWay}"  IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}" ></TextBox>
+                <Label  Content="Şehir"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <ComboBox x:Name="CityList" DisplayMemberPath="Name"
+            SelectedValuePath="Id" SelectionChanged="CityList_SelectionChanged"></ComboBox>
+            </DockPanel>
+            
+            <DockPanel Margin="0,400,0,0">
+                <Label  Content="Aktif Mi:"></Label>
+                <CheckBox x:Name="IsActive" IsChecked="{Binding Path=IsActive, Mode=TwoWay}"  IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></CheckBox>
+                <Label  Content="İlçe/Semt"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <ComboBox x:Name="DistrictList" DisplayMemberPath="PaymentType.Name"
+                SelectedValuePath="PaymentType.Id"></ComboBox>
+            </DockPanel>
+            
+            <Button  x:Name="CRUD_BUTTON" Click="CRUD_BUTTON_Click" Canvas.Left="659" Canvas.Top="455" Content="{Binding DataContext.ButtonContent, ElementName=_grid}" Background="{Binding DataContext.ButtonColor, ElementName=_grid}"/>
+            <Button Background="#E74C3C" Content="İptal" Click="CancelCustomerClick" Canvas.Left="539" Canvas.Top="455"/>
+        </Canvas>
+    </Grid>
+</Window>

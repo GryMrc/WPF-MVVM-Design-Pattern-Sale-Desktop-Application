@@ -1,0 +1,53 @@
+﻿<Window x:Class="OverPay.Windows.ProductCategory.ProductCategoryEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+       Title="ProductCategoryEdit" Height="500" Width="420" ResizeMode="NoResize">
+   
+    
+    <Grid x:Name="_grid">
+        <Canvas x:Name="editItem"  HorizontalAlignment="Left" VerticalAlignment="Top" DataContext="{Binding Path=SelectedProductCategory}">
+            <Border x:Name="ProductCategories" DataContext="{Binding DataContext.ProductCategories ,ElementName=_grid}"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="480" Width="420" Background="#F3F0ED">
+            </Border>
+            <Label x:Name="EditTitle" Content="{Binding DataContext.EditTitle, ElementName=_grid}" Foreground="White" FontSize="22" Height="45" Width="420" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Panel.ZIndex="3"/>
+            <Rectangle Height="45" Width="420" Fill="#52BE80"/>
+                <DockPanel Margin="0,65,0,0">
+                    <Label Content="Adı"></Label>
+                <Label Foreground="OrangeRed" Content="*" Margin="-20,-10,-20,0" Width="20"></Label>
+                <TextBox x:Name="ProductCategoryName"  Text="{Binding Path=Name ,Mode=TwoWay ,ValidatesOnDataErrors=True , UpdateSourceTrigger=PropertyChanged}"   IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></TextBox>
+                </DockPanel>
+            
+                <DockPanel Margin="0,120,0,0">
+                    <Label Content="Üst Unsur"></Label>
+                <TextBox x:Name="Parent" Text="{Binding Path=Parent.Name,Mode=TwoWay}" IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}" KeyUp="TextBox_KeyUp"></TextBox>
+                
+                </DockPanel>
+            <DockPanel Margin="150,152,0,0">
+                <Border  BorderBrush="White">
+                    <ScrollViewer >
+                        <StackPanel Name="resultStack"></StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </DockPanel>
+                <DockPanel Margin="0,190,0,0">
+                    <Label Content="Vergi Grubu"></Label>
+                    <ComboBox x:Name="TaxGroupList"  DisplayMemberPath="Name"
+            SelectedValuePath="Id"  SelectedValue="{Binding Path=TaxGroupId ,Mode=TwoWay}" IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></ComboBox>
+                </DockPanel>
+
+                <DockPanel Margin="0,240,0,0">
+                    <Label Content="Ana Belge Tipi"></Label>
+                    <ComboBox x:Name="DocumentTypeList" DisplayMemberPath="Name"
+            SelectedValuePath="Id" SelectedValue="{Binding Path=MainDocumentTypeId ,Mode=TwoWay}"  IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></ComboBox>
+                </DockPanel>
+            <DockPanel Margin="0,300,0,0">
+                <Label Content="Açıklama"></Label>
+                <TextBox x:Name="Description" MaxLines="4" Text="{Binding Path= Description,Mode=TwoWay}"  IsEnabled="{Binding DataContext.IsEnable, ElementName=_grid}"></TextBox>
+            </DockPanel>
+            <Button x:Name="CRUD_BUTTON" Click="btn_CRUD"    Margin="268,422,102,28" Content="{Binding DataContext.ButtonContent, ElementName=_grid}" Background="{Binding DataContext.ButtonColor, ElementName=_grid}"/>
+            <Button x:Name="CANCEL_BUTTON" Margin="150,422,102,28"   Content="İptal" Background="#E74C3C"  Click="Cancel" />
+            </Canvas>
+    </Grid>
+</Window>
